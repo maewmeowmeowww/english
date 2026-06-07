@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ท่องจำคำศัพท์อังกฤษ</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <section id="homePage" class="page home-page active" aria-labelledby="home-title">
+        <div class="home-copy">
+          <p class="eyebrow">English / Thai</p>
+          <h1 id="home-title">ท่องจำคำศัพท์อังกฤษ</h1>
+
+          <div class="home-actions" aria-label="เมนู">
+            <button class="primary-button page-link" type="button" data-page="testPage">เริ่มทำแบบทดสอบ</button>
+            <button class="ghost-button page-link" type="button" data-page="listPage">ดูรายการคำศัพท์</button>
+          </div>
+        </div>
+
+        <figure class="hero-art">
+          <img src="assets/hippo-flight.png" alt="ภาพฮิปโปนั่งเครื่องบินจากไทยไปญี่ปุ่น">
+        </figure>
+      </section>
+
+      <section id="testPage" class="page test-page" aria-labelledby="test-title">
+        <div class="page-topbar">
+          <button class="back-button page-link" type="button" data-page="homePage" aria-label="กลับหน้าแรก">←</button>
+          <div>
+            <p class="eyebrow">แบบทดสอบ</p>
+            <h2 id="test-title">เลือกหมวดหมู่</h2>
+          </div>
+        </div>
+
+        <div id="testCategoryItems" class="category-items"></div>
+
+        <div id="quizArea" class="quiz-area hidden">
+          <div class="sub-topbar">
+            <button id="quizBackButton" class="back-button" type="button" aria-label="กลับไปหมวดหมู่">←</button>
+            <div>
+              <p class="eyebrow">แบบทดสอบ</p>
+              <h3 id="quizCategoryTitle">คำศัพท์</h3>
+            </div>
+          </div>
+
+          <div class="question-card">
+          <div class="progress-line">
+            <span id="modeLabel">เลือกความหมายภาษาไทยของคำศัพท์อังกฤษ</span>
+            <span id="streakText">1 / 1</span>
+          </div>
+          <div class="question-line">
+            <p id="questionText" class="question-text">hello</p>
+            <button id="questionSpeakButton" class="speak-button large" type="button" aria-label="ฟังเสียงภาษาอังกฤษ">🔊</button>
+          </div>
+          <p id="hintText" class="hint-text">เลือกคำตอบที่ใกล้เคียงที่สุด</p>
+          </div>
+
+          <div id="choices" class="choices" aria-label="ตัวเลือกคำตอบ"></div>
+
+          <div id="resultCard" class="result-card hidden" aria-live="polite">
+          <p class="eyebrow">ผลคะแนน</p>
+          <h3 id="resultTitle">ทำครบแล้ว</h3>
+          <div class="result-grid">
+            <div>
+              <span>รวมทั้งหมด</span>
+              <strong id="totalResult">0 / 0</strong>
+            </div>
+          </div>
+          <div id="mistakeSection" class="mistake-section hidden">
+            <h4>ข้อที่ตอบผิด</h4>
+            <div id="mistakeItems" class="mistake-items"></div>
+          </div>
+          <button id="retryButton" class="primary-button" type="button">ลองอีกครั้ง</button>
+          </div>
+
+          <div class="actions">
+          <button id="nextButton" class="primary-button" type="button" disabled>ข้อถัดไป</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="listPage" class="page list-page" aria-labelledby="word-list-title">
+        <div class="page-topbar">
+          <button class="back-button page-link" type="button" data-page="homePage" aria-label="กลับหน้าแรก">←</button>
+          <div>
+            <p class="eyebrow">คำศัพท์</p>
+            <h2 id="word-list-title">รายการคำศัพท์</h2>
+          </div>
+          <span id="wordCount" class="word-count"></span>
+        </div>
+        <div id="categoryItems" class="category-items"></div>
+        <div id="categoryDetail" class="category-detail hidden">
+          <div class="sub-topbar">
+            <button id="categoryBackButton" class="back-button" type="button" aria-label="กลับไปหมวดหมู่">←</button>
+            <div>
+              <p class="eyebrow">หมวดหมู่</p>
+              <h3 id="categoryTitle">คำศัพท์</h3>
+            </div>
+          </div>
+          <div id="wordItems" class="word-items"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
