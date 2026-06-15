@@ -73,7 +73,8 @@ button {
 
 .eyebrow {
   margin: 0;
-  color: var(--accent);
+  color: #157a74;
+  color: var(--accent, #157a74);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -421,8 +422,10 @@ h4 {
 
 .primary-button {
   color: #ffffff;
-  border-color: var(--accent);
-  background: var(--accent);
+  border-color: #157a74;
+  border-color: var(--accent, #157a74);
+  background: #157a74;
+  background: var(--accent, #157a74);
 }
 
 .primary-button:disabled {
@@ -433,7 +436,8 @@ h4 {
 .ghost-button,
 .back-button {
   background: #ffffff;
-  color: var(--accent-dark);
+  color: #0c5e59;
+  color: var(--accent-dark, #0c5e59);
 }
 
 .back-button {
@@ -614,3 +618,4 @@ h4 {
     text-align: left;
   }
 }
+
