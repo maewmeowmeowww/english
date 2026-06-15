@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ท่องจำคำศัพท์อังกฤษ</title>
-    <link rel="stylesheet" href="styles.css?v=20260615-grammar5">
+    <link rel="stylesheet" href="styles.css?v=20260615-grammar6">
   </head>
   <body>
     <main class="app">
@@ -36,7 +36,7 @@
 
         <div class="category-items">
           <button class="category-card page-link" type="button" data-page="beVerbPage">
-            <strong>Verb to be</strong>
+            <strong>ประโยค I am ～</strong>
             <span>ฝึกใช้ am, is และ are</span>
           </button>
         </div>
@@ -47,15 +47,15 @@
           <button class="back-button page-link" type="button" data-page="grammarPage" aria-label="กลับไปหน้าฝึกไวยากรณ์">←</button>
           <div>
             <p class="eyebrow">Grammar</p>
-            <h2 id="be-verb-title">Verb to be</h2>
+            <h2 id="be-verb-title">ประโยค I am ～</h2>
           </div>
         </div>
 
         <div id="beVerbIntro" class="be-verb-intro">
-          <div class="be-verb-table" aria-label="Verb to be の対応表">
+          <div class="be-verb-table" aria-label="am is are の対応表">
             <div><strong>I</strong><span>am</span></div>
             <div><strong>You</strong><span>are</span></div>
-            <div><strong>He / She / It</strong><span>is</span></div>
+            <div><strong>He / She / It<br>This / That</strong><span>is</span></div>
             <div><strong>We / They</strong><span>are</span></div>
           </div>
           <button id="startGrammarButton" class="primary-button" type="button">ถัดไป</button>
@@ -64,7 +64,7 @@
         <div id="grammarCard" class="grammar-card hidden">
           <div class="progress-line grammar-progress">
             <span>เขียนประโยคภาษาอังกฤษ</span>
-            <span id="grammarCount">1 / 10</span>
+            <span id="grammarCount">1 / 5</span>
           </div>
           <p id="grammarQuestion" class="grammar-question"></p>
           <form id="grammarForm" class="grammar-form">
@@ -75,7 +75,7 @@
           <p id="grammarFeedback" class="grammar-feedback" aria-live="polite"></p>
           <button id="nextGrammarButton" class="primary-button hidden" type="button">ข้อต่อไป</button>
           <div id="grammarComplete" class="grammar-complete hidden">
-            <h3>ทำครบ 10 ข้อแล้ว</h3>
+            <h3>ทำครบ 5 ข้อแล้ว</h3>
             <button id="restartGrammarButton" class="primary-button" type="button">เริ่มชุดใหม่</button>
           </div>
         </div>
@@ -160,6 +160,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=20260615-grammar5"></script>
+    <script src="script.js?v=20260615-grammar6"></script>
   </body>
 </html>

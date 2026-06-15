@@ -381,6 +381,8 @@ const beVerbExercises = [
   { th: "เขา (ผู้หญิง)　เป็น　วิศวกร (an engineer)", answer: "She is an engineer", alternatives: ["She's an engineer"] },
   { th: "มัน　ตัวใหญ่ (big)", answer: "It is big", alternatives: ["It's big"] },
   { th: "มัน　เป็น　สัตว์ (an animal)", answer: "It is an animal", alternatives: ["It's an animal"] },
+  { th: "นี่　เป็น　หนังสือ (a book)", answer: "This is a book", alternatives: [] },
+  { th: "นั่น　ตัวใหญ่ (big)", answer: "That is big", alternatives: ["That's big"] },
   { th: "พวกเรา　พร้อม (ready)", answer: "We are ready", alternatives: ["We're ready"] },
   { th: "พวกเขา　ยุ่ง (busy)", answer: "They are busy", alternatives: ["They're busy"] },
   { th: "พวกเขา　ใจดี (kind)", answer: "They are kind", alternatives: ["They're kind"] }
@@ -457,13 +459,13 @@ function normalizeSentence(sentence) {
   return sentence
     .trim()
     .toLowerCase()
-    .replace(/[.!?]+$/g, "")
     .replace(/[’]/g, "'")
+    .replace(/\s+\./g, ".")
     .replace(/\s+/g, " ");
 }
 
 function startGrammarSet() {
-  grammarQueue = shuffle(beVerbExercises).slice(0, 10);
+  grammarQueue = shuffle(beVerbExercises).slice(0, 5);
   grammarIndex = 0;
   beVerbIntro.classList.add("hidden");
   grammarCard.classList.remove("hidden");
@@ -482,7 +484,7 @@ function showBeVerbIntro() {
 function showGrammarExercise() {
   currentGrammarExercise = grammarQueue[grammarIndex];
   grammarQuestion.textContent = currentGrammarExercise.th;
-  grammarCount.textContent = `${grammarIndex + 1} / 10`;
+  grammarCount.textContent = `${grammarIndex + 1} / 5`;
   grammarAnswer.value = "";
   grammarAnswer.disabled = false;
   grammarFeedback.textContent = "";
@@ -496,7 +498,7 @@ function checkGrammarAnswer(event) {
   if (!currentGrammarExercise) return;
 
   const acceptedAnswers = [currentGrammarExercise.answer, ...currentGrammarExercise.alternatives]
-    .map(normalizeSentence);
+    .map((answer) => normalizeSentence(`${answer}.`));
   const isCorrect = acceptedAnswers.includes(normalizeSentence(grammarAnswer.value));
 
   grammarFeedback.className = `grammar-feedback ${isCorrect ? "correct" : "wrong"}`;
