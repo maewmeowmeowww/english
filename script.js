@@ -54,7 +54,14 @@ const categories = [
       { en: "eighty", th: "แปดสิบ" },
       { en: "ninety", th: "เก้าสิบ" },
       { en: "one hundred", th: "หนึ่งร้อย" },
-      { en: "one thousand", th: "หนึ่งพัน" },
+      { en: "one thousand", th: "หนึ่งพัน" }
+    ]
+  },
+  {
+    id: "ordinals",
+    title: "ลำดับที่",
+    note: "การนับลำดับ first ถึง tenth",
+    words: [
       { en: "first", th: "ที่หนึ่ง" },
       { en: "second", th: "ที่สอง" },
       { en: "third", th: "ที่สาม" },
@@ -216,7 +223,7 @@ const categories = [
     ]
   },
   {
-    id: "verbs-1",
+    id: "verbs-1a",
     title: "คำกริยา 1",
     note: "คำศัพท์เกี่ยวกับการกระทำ",
     words: [
@@ -231,7 +238,14 @@ const categories = [
       { en: "read", th: "อ่าน" },
       { en: "listen", th: "ฟัง" },
       { en: "hear", th: "ได้ยิน" },
-      { en: "speak", th: "พูด" },
+      { en: "speak", th: "พูด" }
+    ]
+  },
+  {
+    id: "verbs-1b",
+    title: "คำกริยา 2",
+    note: "คำศัพท์เกี่ยวกับการกระทำ",
+    words: [
       { en: "walk", th: "เดิน" },
       { en: "run", th: "วิ่ง" },
       { en: "swim", th: "ว่ายน้ำ" },
@@ -248,8 +262,8 @@ const categories = [
     ]
   },
   {
-    id: "verbs-2",
-    title: "คำกริยา 2",
+    id: "verbs-2a",
+    title: "คำกริยา 3",
     note: "คำศัพท์เกี่ยวกับการกระทำ",
     words: [
       { en: "wash", th: "ล้าง" },
@@ -264,7 +278,14 @@ const categories = [
       { en: "visit", th: "ไปเยี่ยม" },
       { en: "open", th: "เปิด" },
       { en: "close", th: "ปิด" },
-      { en: "begin", th: "เริ่ม" },
+      { en: "begin", th: "เริ่ม" }
+    ]
+  },
+  {
+    id: "verbs-2b",
+    title: "คำกริยา 4",
+    note: "คำศัพท์เกี่ยวกับการกระทำ",
+    words: [
       { en: "finish", th: "จบ" },
       { en: "teach", th: "สอน" },
       { en: "tell", th: "บอก" },
@@ -280,7 +301,7 @@ const categories = [
     ]
   },
   {
-    id: "adjectives-1",
+    id: "adjectives-1a",
     title: "คำคุณศัพท์ 1",
     note: "คำบอกลักษณะและสภาพ",
     words: [
@@ -294,7 +315,14 @@ const categories = [
       { en: "good", th: "ดี" },
       { en: "bad", th: "ไม่ดี" },
       { en: "clean", th: "สะอาด" },
-      { en: "light", th: "เบา" },
+      { en: "light", th: "เบา" }
+    ]
+  },
+  {
+    id: "adjectives-1b",
+    title: "คำคุณศัพท์ 2",
+    note: "คำบอกลักษณะและสภาพ",
+    words: [
       { en: "heavy", th: "หนัก" },
       { en: "dark", th: "มืด" },
       { en: "wet", th: "เปียก" },
@@ -308,8 +336,8 @@ const categories = [
     ]
   },
   {
-    id: "adjectives-2",
-    title: "คำคุณศัพท์ 2",
+    id: "adjectives-2a",
+    title: "คำคุณศัพท์ 3",
     note: "คำบอกลักษณะและสภาพ",
     words: [
       { en: "pink", th: "สีชมพู" },
@@ -323,7 +351,14 @@ const categories = [
       { en: "old", th: "เก่า" },
       { en: "young", th: "หนุ่มสาว" },
       { en: "fresh", th: "สด" },
-      { en: "great", th: "ยอดเยี่ยม" },
+      { en: "great", th: "ยอดเยี่ยม" }
+    ]
+  },
+  {
+    id: "adjectives-2b",
+    title: "คำคุณศัพท์ 4",
+    note: "คำบอกลักษณะและสภาพ",
+    words: [
       { en: "far", th: "ไกล" },
       { en: "near", th: "ใกล้" },
       { en: "kind", th: "ใจดี" },
@@ -541,9 +576,12 @@ function answer(choice, selectedButton) {
 }
 
 function showResults() {
+  const totalScore = state.scores["en-th"] + state.scores["th-en"];
+  const isPerfect = totalScore === state.queue.length;
   resultTitle.textContent = `ทำครบ ${state.queue.length} ข้อแล้ว`;
-  totalResult.textContent = `${state.scores["en-th"] + state.scores["th-en"]} / ${state.queue.length}`;
+  totalResult.textContent = `${totalScore} / ${state.queue.length}`;
   renderMistakes();
+  retryButton.classList.toggle("hidden", isPerfect);
   resultCard.classList.remove("hidden");
   nextButton.disabled = true;
   nextButton.classList.add("hidden");
@@ -582,6 +620,7 @@ function startQuiz(category = state.currentCategory) {
     "th-en": 0
   };
   state.mistakes = [];
+  retryButton.classList.add("hidden");
   testTitle.textContent = "แบบทดสอบ 4 ตัวเลือก";
   quizCategoryTitle.textContent = category.title;
   testCategoryItems.classList.add("hidden");
@@ -589,28 +628,9 @@ function startQuiz(category = state.currentCategory) {
   renderQuestion();
 }
 
-function showTestCategories() {
-  testTitle.textContent = "เลือกหมวดหมู่";
-  quizArea.classList.add("hidden");
-  testCategoryItems.classList.remove("hidden");
-  resultCard.classList.add("hidden");
-}
-
-function renderTestCategoryList() {
-  testCategoryItems.innerHTML = "";
-
-  categories.forEach((category) => {
-    const button = document.createElement("button");
-    button.className = "category-card";
-    button.type = "button";
-    button.innerHTML = `
-      <strong>${category.title}</strong>
-      <span>${category.words.length * 2} ข้อ</span>
-      <small>${category.note}</small>
-    `;
-    button.addEventListener("click", () => startQuiz(category));
-    testCategoryItems.appendChild(button);
-  });
+function startRandomQuiz() {
+  const category = categories[Math.floor(Math.random() * categories.length)];
+  startQuiz(category);
 }
 
 function renderCategoryList() {
@@ -688,7 +708,7 @@ pageLinks.forEach((button) => {
   button.addEventListener("click", () => {
     showPage(button.dataset.page);
     if (button.dataset.page === "testPage") {
-      showTestCategories();
+      startRandomQuiz();
     }
     if (button.dataset.page === "listPage") {
       showCategories();
@@ -701,17 +721,15 @@ nextButton.addEventListener("click", () => {
   renderQuestion();
 });
 
-quizBackButton.addEventListener("click", showTestCategories);
+quizBackButton.addEventListener("click", () => showPage("homePage"));
 categoryBackButton.addEventListener("click", showCategories);
 retryButton.addEventListener("click", () => startQuiz());
 questionSpeakButton.addEventListener("click", () => {
   if (state.current) speakEnglish(state.current.en);
 });
 
-renderTestCategoryList();
 renderCategoryList();
 showCategories();
-showTestCategories();
 
 const initialPage = {
   "#test": "testPage",
@@ -719,3 +737,7 @@ const initialPage = {
 }[window.location.hash] || "homePage";
 
 showPage(initialPage);
+
+if (initialPage === "testPage") {
+  startRandomQuiz();
+}
