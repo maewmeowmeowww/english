@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ท่องจำคำศัพท์อังกฤษ</title>
-    <link rel="stylesheet" href="styles.css?v=20260615-categories1">
+    <link rel="stylesheet" href="styles.css?v=20260615-grammar4">
   </head>
   <body>
     <main class="app">
@@ -16,12 +16,69 @@
           <div class="home-actions" aria-label="เมนู">
             <button class="primary-button page-link" type="button" data-page="testPage">เริ่มทำแบบทดสอบ</button>
             <button class="ghost-button page-link" type="button" data-page="listPage">ดูรายการคำศัพท์</button>
+            <button class="ghost-button page-link" type="button" data-page="grammarPage">ฝึกไวยากรณ์</button>
           </div>
         </div>
 
         <figure class="hero-art">
           <img src="assets/hippo-flight.png" alt="ภาพฮิปโปนั่งเครื่องบินจากไทยไปญี่ปุ่น">
         </figure>
+      </section>
+
+      <section id="grammarPage" class="page grammar-page" aria-labelledby="grammar-title">
+        <div class="page-topbar">
+          <button class="back-button page-link" type="button" data-page="homePage" aria-label="กลับหน้าแรก">←</button>
+          <div>
+            <p class="eyebrow">Grammar</p>
+            <h2 id="grammar-title">ฝึกไวยากรณ์</h2>
+          </div>
+        </div>
+
+        <div class="category-items">
+          <button class="category-card page-link" type="button" data-page="beVerbPage">
+            <strong>Verb to be</strong>
+            <span>ฝึกใช้ am, is และ are</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="beVerbPage" class="page grammar-page" aria-labelledby="be-verb-title">
+        <div class="page-topbar">
+          <button class="back-button page-link" type="button" data-page="grammarPage" aria-label="กลับไปหน้าฝึกไวยากรณ์">←</button>
+          <div>
+            <p class="eyebrow">Grammar</p>
+            <h2 id="be-verb-title">Verb to be</h2>
+          </div>
+        </div>
+
+        <div id="beVerbIntro" class="be-verb-intro">
+          <div class="be-verb-table" aria-label="Verb to be の対応表">
+            <div><strong>I</strong><span>am</span></div>
+            <div><strong>You</strong><span>are</span></div>
+            <div><strong>He / She / It</strong><span>is</span></div>
+            <div><strong>We / They</strong><span>are</span></div>
+          </div>
+          <button id="startGrammarButton" class="primary-button" type="button">ถัดไป</button>
+        </div>
+
+        <div id="grammarCard" class="grammar-card hidden">
+          <div class="progress-line grammar-progress">
+            <span>เขียนประโยคภาษาอังกฤษ</span>
+            <span id="grammarCount">1 / 10</span>
+          </div>
+          <p id="grammarQuestion" class="grammar-question"></p>
+          <form id="grammarForm" class="grammar-form">
+            <label for="grammarAnswer">คำตอบ</label>
+            <input id="grammarAnswer" type="text" autocomplete="off" autocapitalize="sentences" spellcheck="false">
+            <button class="primary-button" type="submit">ตรวจคำตอบ</button>
+          </form>
+          <p id="grammarFeedback" class="grammar-feedback" aria-live="polite"></p>
+          <button id="nextGrammarButton" class="primary-button hidden" type="button">ข้อต่อไป</button>
+          <div id="grammarComplete" class="grammar-complete hidden">
+            <h3>ทำครบ 10 ข้อแล้ว</h3>
+            <button id="restartGrammarButton" class="primary-button" type="button">เริ่มชุดใหม่</button>
+          </div>
+        </div>
       </section>
 
       <section id="testPage" class="page test-page" aria-labelledby="test-title">
@@ -103,6 +160,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=20260615-categories1"></script>
+    <script src="script.js?v=20260615-grammar4"></script>
   </body>
 </html>
