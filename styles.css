@@ -330,9 +330,23 @@ h4 {
   gap: 12px;
 }
 
-.choice-button {
+.choice-option {
   min-height: 86px;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(72px, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: transform 140ms ease, border-color 140ms ease, opacity 140ms ease;
+}
+
+.choice-button {
+  min-width: 0;
+  min-height: 84px;
   padding: 14px;
+  border: 0;
+  border-radius: 0;
   background: #ffffff;
   color: var(--ink);
   font-size: clamp(1rem, 2vw, 1.35rem);
@@ -341,17 +355,15 @@ h4 {
   overflow-wrap: anywhere;
 }
 
-.choice-button.with-sound {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 10px;
-  text-align: left;
-}
-
-.choice-text {
-  min-width: 0;
-  overflow-wrap: anywhere;
+.choice-speak-button {
+  min-width: 72px;
+  min-height: 84px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: var(--accent-soft, #d9f0ed);
+  color: var(--accent-dark, #0c5e59);
+  font-size: 1.35rem;
+  cursor: pointer;
 }
 
 .speak-button {
@@ -388,7 +400,7 @@ h4 {
   display: none;
 }
 
-.choice-button:hover:not(:disabled),
+.choice-option:hover,
 .mode-button:hover,
 .primary-button:hover:not(:disabled),
 .ghost-button:hover,
@@ -398,19 +410,31 @@ h4 {
   border-color: var(--accent);
 }
 
-.choice-button.correct {
+.choice-option.correct {
   color: #ffffff;
   border-color: var(--right);
   background: var(--right);
 }
 
-.choice-button.wrong {
+.choice-option.correct .choice-button,
+.choice-option.correct .choice-speak-button {
+  color: #ffffff;
+  background: var(--right);
+}
+
+.choice-option.wrong {
   color: #ffffff;
   border-color: var(--wrong);
   background: var(--wrong);
 }
 
-.choice-button.dimmed {
+.choice-option.wrong .choice-button,
+.choice-option.wrong .choice-speak-button {
+  color: #ffffff;
+  background: var(--wrong);
+}
+
+.choice-option.dimmed {
   opacity: 0.46;
 }
 
@@ -618,4 +642,3 @@ h4 {
     text-align: left;
   }
 }
-

@@ -460,43 +460,31 @@ function renderQuestion() {
   choices.innerHTML = "";
 
   buildChoices(state.current).forEach((choice) => {
-    const button = document.createElement("button");
-    button.className = "choice-button";
-    button.type = "button";
-    if (state.mode === "th-en") {
-      button.classList.add("with-sound");
-      const label = document.createElement("span");
-      label.className = "choice-text";
-      label.textContent = choice;
+    const option = document.createElement("div");
+    option.className = "choice-option";
+    option.dataset.choice = choice;
 
-      const speakButton = document.createElement("span");
-      speakButton.className = "speak-button small";
-      speakButton.setAttribute("role", "button");
-      speakButton.setAttribute("tabindex", "0");
-      speakButton.setAttribute("aria-label", `ฟังเสียง ${choice}`);
-      speakButton.textContent = "🔊";
-      speakButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        speakEnglish(choice);
-      });
-      speakButton.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          event.stopPropagation();
-          speakEnglish(choice);
-        }
-      });
+    const answerButton = document.createElement("button");
+    answerButton.className = "choice-button";
+    answerButton.type = "button";
+    answerButton.textContent = choice;
+    answerButton.addEventListener("click", () => answer(choice, option));
 
-      button.append(label, speakButton);
-    } else {
-      button.textContent = choice;
-    }
-    button.addEventListener("click", () => answer(choice, button));
-    choices.appendChild(button);
+    const speakButton = document.createElement("button");
+    speakButton.className = "choice-speak-button";
+    speakButton.type = "button";
+    speakButton.setAttribute("aria-label", `ฟังเสียง ${choice}`);
+    speakButton.textContent = "🔊";
+    speakButton.addEventListener("click", () => {
+      speakText(choice, state.mode === "en-th" ? "th-TH" : "en-US");
+    });
+
+    option.append(answerButton, speakButton);
+    choices.appendChild(option);
   });
 }
 
-function speakEnglish(text) {
+function speakText(text, language = "en-US") {
   if (!("speechSynthesis" in window)) {
     hintText.textContent = "เบราว์เซอร์นี้ไม่รองรับการอ่านออกเสียง";
     return;
@@ -504,9 +492,13 @@ function speakEnglish(text) {
 
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
+  utterance.lang = language;
   utterance.rate = 0.85;
   window.speechSynthesis.speak(utterance);
+}
+
+function speakEnglish(text) {
+  speakText(text, "en-US");
 }
 
 function answer(choice, selectedButton) {
@@ -527,14 +519,17 @@ function answer(choice, selectedButton) {
     });
   }
 
-  [...choices.children].forEach((button) => {
-    button.disabled = true;
-    if (button.textContent.replace("🔊", "").trim() === correctAnswer) {
-      button.classList.add("correct");
-    } else if (button === selectedButton) {
-      button.classList.add("wrong");
+  [...choices.children].forEach((option) => {
+    const answerButton = option.querySelector(".choice-button");
+    const speakButton = option.querySelector(".choice-speak-button");
+    answerButton.disabled = true;
+    speakButton.disabled = true;
+    if (option.dataset.choice === correctAnswer) {
+      option.classList.add("correct");
+    } else if (option === selectedButton) {
+      option.classList.add("wrong");
     } else {
-      button.classList.add("dimmed");
+      option.classList.add("dimmed");
     }
   });
 
