@@ -39,6 +39,10 @@
             <strong>ประโยค I am ～</strong>
             <span>ฝึกใช้ am, is และ are</span>
           </button>
+          <button class="category-card page-link" type="button" data-page="generalVerbPage">
+            <strong>一般動詞</strong>
+            <span>ฝึกใช้คำกริยาทั่วไป</span>
+          </button>
         </div>
       </section>
 
@@ -55,7 +59,7 @@
           <div class="be-verb-table" aria-label="am is are の対応表">
             <div><strong>I</strong><span>am</span></div>
             <div><strong>You</strong><span>are</span></div>
-            <div><strong>He / She / It<br>This / That</strong><span>is</span></div>
+            <div><strong>He / She / It<br>This / That<br>First / Fang</strong><span>is</span></div>
             <div><strong>We / They</strong><span>are</span></div>
           </div>
           <button id="startGrammarButton" class="primary-button" type="button">ถัดไป</button>
@@ -77,6 +81,51 @@
           <div id="grammarComplete" class="grammar-complete hidden">
             <h3>ทำครบ 5 ข้อแล้ว</h3>
             <button id="restartGrammarButton" class="primary-button" type="button">เริ่มชุดใหม่</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="generalVerbPage" class="page grammar-page" aria-labelledby="general-verb-title">
+        <div class="page-topbar">
+          <button class="back-button page-link" type="button" data-page="grammarPage" aria-label="กลับไปหน้าฝึกไวยากรณ์">←</button>
+          <div>
+            <p class="eyebrow">Grammar</p>
+            <h2 id="general-verb-title">一般動詞</h2>
+          </div>
+        </div>
+
+        <div id="generalVerbIntro" class="be-verb-intro">
+          <div class="be-verb-table general-verb-table" aria-label="一般動詞の対応表">
+            <div>
+              <strong>I / You / We / They</strong>
+              <span>กริยาเดิม</span>
+              <small>I eat rice.</small>
+            </div>
+            <div>
+              <strong>He / She / It<br>This / That<br>First / Fang</strong>
+              <span>กริยา + s/es</span>
+              <small>Fang eats rice.</small>
+            </div>
+          </div>
+          <button id="startGeneralVerbButton" class="primary-button" type="button">ถัดไป</button>
+        </div>
+
+        <div id="generalVerbCard" class="grammar-card hidden">
+          <div class="progress-line grammar-progress">
+            <span>เขียนประโยคภาษาอังกฤษ</span>
+            <span id="generalVerbCount">1 / 5</span>
+          </div>
+          <p id="generalVerbQuestion" class="grammar-question"></p>
+          <form id="generalVerbForm" class="grammar-form">
+            <label for="generalVerbAnswer">คำตอบ</label>
+            <input id="generalVerbAnswer" type="text" autocomplete="off" autocapitalize="sentences" spellcheck="false">
+            <button class="primary-button" type="submit">ตรวจคำตอบ</button>
+          </form>
+          <p id="generalVerbFeedback" class="grammar-feedback" aria-live="polite"></p>
+          <button id="nextGeneralVerbButton" class="primary-button hidden" type="button">ข้อต่อไป</button>
+          <div id="generalVerbComplete" class="grammar-complete hidden">
+            <h3>ทำครบ 5 ข้อแล้ว</h3>
+            <button id="restartGeneralVerbButton" class="primary-button" type="button">เริ่มชุดใหม่</button>
           </div>
         </div>
       </section>
@@ -161,5 +210,6 @@
     </main>
 
     <script src="script.js?v=20260615-grammar6"></script>
+    <script src="grammar-extra.js?v=20260622-grammar1"></script>
   </body>
 </html>
